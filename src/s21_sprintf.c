@@ -8,6 +8,7 @@ typedef struct {
   char length;
   char spec;
 } Spec;
+
 #define SIZE_ARRAY 2056
 
 int convert_from_str_to_int(const char* str);
