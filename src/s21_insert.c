@@ -1,5 +1,6 @@
-#include "s21_string.h"
 #include <stdlib.h>
+
+#include "s21_string.h"
 
 void* s21_insert(const char* src, const char* str, s21_size_t start_index) {
   s21_size_t len_src = s21_strlen(src);
@@ -13,7 +14,8 @@ void* s21_insert(const char* src, const char* str, s21_size_t start_index) {
 
   s21_strncpy(new_str, src, start_index);
   s21_strncpy(new_str + start_index, str, len_str);
-  s21_strncpy(new_str + start_index + len_str, src + start_index, len_src - start_index);
+  s21_strncpy(new_str + start_index + len_str, src + start_index,
+              len_src - start_index);
   new_str[new_len] = '\0';
   return new_str;
 }
