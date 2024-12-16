@@ -579,6 +579,35 @@ START_TEST(sprintf_check_40) {
 }
 END_TEST
 
+START_TEST(sprintf_check_41) {
+  // Arrange
+  char str_orig[1024];
+  char str_own[1024];
+  int d = -42;
+  unsigned int u = 3000000000;
+  float f = 3.14159f;
+  double df = 2.718281828459;
+  char c = 'A';
+  char *s = "Hello, World!";
+  char *p = &c;
+  int n_sprintf = 0;
+  int n_s21 = 0;
+  char percent = '%';
+
+  const char *format =
+      "%%: %% | %%c: %c | %%s: %s | %%d: %d | %%u: %u | %%f: %.2f | %%e: %.3e "
+      "| %%E: %.3E | %%g: %.4g | %%G: %.4G | %%x: %#x | %%X: %#X | %%o: %#o | "
+      "%%p %p |";
+
+  // Act
+  s21_sprintf(str_own, format, c, s, d, u, f, df, df, f, f, d, d, d, p);
+  sprintf(str_orig, format, c, s, d, u, f, df, df, f, f, d, d, d, p);
+
+  // Assert
+  ck_assert_str_eq(str_orig, str_own);
+}
+END_TEST
+
 Suite *s21_sprintf_suite(void) {
   Suite *s;
   TCase *tc;
@@ -626,6 +655,7 @@ Suite *s21_sprintf_suite(void) {
   tcase_add_test(tc, sprintf_check_38);
   tcase_add_test(tc, sprintf_check_39);
   tcase_add_test(tc, sprintf_check_40);
+  tcase_add_test(tc, sprintf_check_41);
 
   suite_add_tcase(s, tc);
 

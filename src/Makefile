@@ -6,9 +6,9 @@ SRCS = s21_*.c
 all: test
 
 test:rebuild_lib tests/*.c
-	$(GCC) tests/*.c $(LIB_NAME) -lcheck -lm -g -o test
-	# ./test
-	# rm test
+	$(GCC) tests/*.c $(LIB_NAME) -lcheck -lm -lsubunit -g -o test
+	./test
+	rm test
 
 gcov_report: clean $(SRCS) tests/*.c
 	@mkdir report

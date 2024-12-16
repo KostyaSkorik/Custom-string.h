@@ -22,7 +22,7 @@ void insert_in_start(char* buffer, char c);
 void exp_notation(char* buffer, double x, Spec token);
 void del_zeroes(char* str);
 int func_for_gG(Spec* token, double fval);
-void func_for_p(char* buffer, __int128_t ptr, Spec token);
+void func_for_p(char* buffer, void* ptr, Spec token);
 
 void processing_the_specifier(char* buffer, va_list var, Spec* token);
 void processing_the_accuracy(char* buffer, Spec token);
@@ -113,7 +113,7 @@ void processing_the_specifier(char* buffer, va_list var, Spec* token) {
       break;
     }
     case ('p'):
-      func_for_p(buffer, va_arg(var, __int128_t), *token);
+      func_for_p(buffer, va_arg(var, void*), *token);
       break;
     case ('g'):
     case ('G'):
@@ -138,8 +138,9 @@ void processing_the_specifier(char* buffer, va_list var, Spec* token) {
   }
 }
 
-void func_for_p(char* buffer, __int128_t ptr, Spec token) {
-  convert_from_int_to_str(buffer, ptr, 16, token);
+void func_for_p(char* buffer, void* ptr, Spec token) {
+  uintptr_t adress = (uintptr_t)ptr;
+  convert_from_int_to_str(buffer, adress, 16, token);
   char* new_str = s21_insert(buffer, "0x", 0);
   s21_strncpy(buffer, new_str, s21_strlen(new_str));
   free(new_str);
