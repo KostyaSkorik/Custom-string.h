@@ -12,7 +12,7 @@ test:rebuild_lib tests/*.c
 
 gcov_report: clean $(SRCS) tests/*.c
 	@mkdir report
-	$(GCC) --coverage $(SRCS) tests/*.c -lcheck -lm -o report/test
+	$(GCC) --coverage $(SRCS) tests/*.c -lcheck -lm -lsubunit -o report/test
 	./report/test
 	@gcovr --html-details -o report/report.html
 	@xdg-open report/report.html
