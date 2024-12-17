@@ -3,7 +3,7 @@ CFLAGS=-std=c11 -Wall -Werror -Wextra -g
 LIB_NAME = s21_string.a
 SRCS = s21_*.c
 
-all: test
+all: $(LIB_NAME)
 
 test:rebuild_lib tests/*.c
 	$(GCC) tests/*.c $(LIB_NAME) -lcheck -lm -lsubunit -g -o test
@@ -24,7 +24,7 @@ $(LIB_NAME): $(OBJS)
 	mkdir objects/
 	mv *.o objects/
 
-rebuild_lib: clean $(LIB_NAME)
+rebuild: clean $(LIB_NAME)
 
 clang:
 	@clang-format -i *.c *.h
