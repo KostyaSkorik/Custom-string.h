@@ -53,7 +53,7 @@ START_TEST(insert_check_4) {
   const char src[256] = "asd";
   s21_size_t start_index = 5;
   // Act
-  char* new_str = s21_insert(src, str, start_index);
+  char* new_str = s21_insert(str, src, start_index);
   // Assert
   if (new_str == NULL) {
     ck_assert_ptr_null(new_str);

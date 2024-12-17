@@ -5,7 +5,7 @@ SRCS = s21_*.c
 
 all: $(LIB_NAME)
 
-test:rebuild_lib tests/*.c
+test:rebuild tests/*.c
 	$(GCC) tests/*.c $(LIB_NAME) -lcheck -lm -lsubunit -g -o test
 	./test
 	rm test
